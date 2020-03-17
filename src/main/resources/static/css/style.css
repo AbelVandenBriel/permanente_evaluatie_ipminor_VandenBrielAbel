@@ -1,0 +1,49 @@
+body {
+    font-family: "Lato", sans-serif;
+}
+
+h1, section {
+    margin-left: 60px;
+}
+.sidenav {
+    height: 100%;
+    width: 50px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 10px;
+    display: block;
+}
+
+.sidenav:hover {
+    width: 250px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 50px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav img{
+    height:40px;
+    margin-left:5px;
+    transition: 0.3s;
+}
+.sidenav:hover img{
+    transform: rotate(180deg);
+    margin-left: 200px;
+    transition: 0.5s;
+}

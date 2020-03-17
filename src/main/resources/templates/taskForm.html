@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add A Task</title>
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<header>
+    <h1>Task App</h1>
+</header>
+<body>
+<div id="mySidenav" class="sidenav">
+    <img src="/images/double-chevron.png" id="open">
+    <a href="/">Overview</a></li>
+    <a href="/tasks/new">Create Task</a>
+</div>
+<section>
+    <h2>Add a task:</h2>
+    <form method="post" action="/tasks/createTask">
+        <div>
+            <label for="name">Task name:</label>
+            <input id="name" name="name" type="text" required>
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <input id="description" name="description" type="text" required>
+        </div>
+        <div>
+            <label for="dueDate">Due date:</label>
+            <input id="dueDate" name="dueDate" type="datetime-local" required>
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+    </form>
+</section>
+</body>
+</html>

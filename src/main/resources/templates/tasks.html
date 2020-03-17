@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<header>
+    <h1>Task App</h1>
+</header>
+<body>
+<div id="mySidenav" class="sidenav">
+    <img src="/images/double-chevron.png" id="open">
+    <a href="/">Overview</a></li>
+    <a href="/tasks/new">Create Task</a>
+</div>
+<section>
+    <h2>Tasks:</h2>
+    <ul th:each="task : ${tasks}">
+        <li>
+            <a th:href="${'/tasks/' + task.id.toString()}"><span th:text="${task.name}"></span></a>
+            <span th:text="': due ' + ${task.getDueDateAsFormattedString()}"></span>
+            <a th:href="${'/tasks/edit/' + task.id.toString()}"> edit</a>
+        </li>
+    </ul>
+</section>
+</body>
+</html>

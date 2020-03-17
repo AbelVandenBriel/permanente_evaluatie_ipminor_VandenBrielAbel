@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Description</title>
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<header>
+    <h1>Task App</h1>
+</header>
+<body>
+<div id="mySidenav" class="sidenav">
+    <img src="/images/double-chevron.png" id="open">
+    <a href="/">Overview</a></li>
+    <a href="/tasks/new">Create Task</a>
+</div>
+<section>
+    <h2>Description: </h2>
+    <table th:if="${task != null}">
+        <tr>
+            <td>Name:</td>
+            <td th:text="${task.name}"></td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td th:text="${task.description}"></td>
+        </tr>
+        <tr>
+            <td>Due date:</td>
+            <td th:text="${task.getDueDateAsFormattedString()}"></td>
+        </tr>
+    </table>
+
+    <p>Sub tasks: </p>
+    <p th:if="${task.subTasks.size() == 0}">No subtasks yet.</p>
+    <div th:if="${task.subTasks.size() > 0}">
+    <ul th:each="subTask : ${task.subTasks}">
+        <li>
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td th:text="${subTask.name}"></td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td th:text="${subTask.description}"></td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+    </div>
+    <a th:href="'/tasks/' + ${task.id.toString()} + '/sub/create'">Add a subtask</a>
+    <p th:if="${task == null}">
+        Geen task gevonden met die ID.
+    </p>
+</section>
+</body>
+</html>
