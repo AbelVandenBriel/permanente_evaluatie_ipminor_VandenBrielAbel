@@ -6,6 +6,7 @@ import pe.permanente_evaluatie.domain.Task;
 
 import java.util.UUID;
 
+@Repository
 public interface TaskRepository extends JpaRepository<Task, UUID> {
 
 }

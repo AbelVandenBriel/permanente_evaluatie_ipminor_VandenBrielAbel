@@ -2,28 +2,40 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Tasks</title>
+    <title th:text="#{titleTasks}"></title>
     <link rel="stylesheet" type="text/css" href="/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <header>
-    <h1>Task App</h1>
+    <h1 th:text="#{app}"></h1>
 </header>
 <body>
 <div id="mySidenav" class="sidenav">
     <img src="/images/double-chevron.png" id="open">
-    <a href="/">Overview</a></li>
-    <a href="/tasks/new">Create Task</a>
+    <a href="/" th:text="#{overview}">Overview</a></li>
+    <a href="/tasks/new" th:text="#{create}">Create Task</a>
+    <div class="language">
+        <p th:text="#{lang.change}"></p>
+        <div id="select">
+        <select id="locales">
+            <option value=""></option>
+            <option value="en">English</option>
+            <option value="nl">Nederlands</option>
+        </select>
+        </div>
+    </div>
 </div>
 <section>
-    <h2>Tasks:</h2>
+    <h2 th:text="#{tasks}">Tasks:</h2>
     <ul th:each="task : ${tasks}">
         <li>
             <a th:href="${'/tasks/' + task.id.toString()}"><span th:text="${task.name}"></span></a>
             <span th:text="': due ' + ${task.getDueDateAsFormattedString()}"></span>
-            <a th:href="${'/tasks/edit/' + task.id.toString()}"> edit</a>
+            <a th:href="${'/tasks/edit/' + task.id.toString()}" th:text="#{edit}"></a>
         </li>
     </ul>
 </section>
+<script src="/js/locale.js"></script>
 </body>
 </html>

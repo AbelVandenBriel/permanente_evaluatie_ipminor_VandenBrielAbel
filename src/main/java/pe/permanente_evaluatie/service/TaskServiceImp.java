@@ -2,6 +2,7 @@ package pe.permanente_evaluatie.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import pe.permanente_evaluatie.domain.SubTask;
 import pe.permanente_evaluatie.domain.Task;
 import pe.permanente_evaluatie.domain.TaskDTO;
@@ -12,14 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Repository
+@Service
 public class TaskServiceImp implements TaskService{
 
     @Autowired
     private TaskRepository repository;
-
-    public TaskServiceImp() {
-    }
 
     @Override
     public List<Task> getTasks() {
@@ -28,10 +26,6 @@ public class TaskServiceImp implements TaskService{
 
     @Override
     public void addTask(Task task){
-        Task newTask = new Task();
-        task.setDueDate(task.getDueDate());
-        task.setName(task.getName());
-        task.setDescription(task.getDescription());
         repository.save(task);
     }
 

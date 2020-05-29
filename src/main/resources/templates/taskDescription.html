@@ -2,58 +2,67 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Task Description</title>
+    <title th:text="#{titleTaskDescription}"></title>
     <link rel="stylesheet" type="text/css" href="/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <header>
-    <h1>Task App</h1>
+    <h1 th:text="#{app}"></h1>
 </header>
 <body>
 <div id="mySidenav" class="sidenav">
     <img src="/images/double-chevron.png" id="open">
-    <a href="/">Overview</a></li>
-    <a href="/tasks/new">Create Task</a>
+    <a href="/" th:text="#{overview}">Overview</a></li>
+    <a href="/tasks/new" th:text="#{create}">Create Task</a>
+    <div class="language">
+        <p th:text="#{lang.change}"></p>
+        <select id="locales">
+            <option value=""></option>
+            <option value="en">English</option>
+            <option value="nl">Nederlands</option>
+        </select>
+    </div>
 </div>
 <section>
-    <h2>Description: </h2>
+    <h2 th:text="#{taskDescription}"></h2>
     <table th:if="${task != null}">
         <tr>
-            <td>Name:</td>
+            <td th:text="#{taskName}"></td>
             <td th:text="${task.name}"></td>
         </tr>
         <tr>
-            <td>Description:</td>
+            <td th:text="#{taskDescription}"></td>
             <td th:text="${task.description}"></td>
         </tr>
         <tr>
-            <td>Due date:</td>
+            <td th:text="#{taskDueDate}"></td>
             <td th:text="${task.getDueDateAsFormattedString()}"></td>
         </tr>
     </table>
 
-    <p>Sub tasks: </p>
-    <p th:if="${task.subTasks.size() == 0}">No subtasks yet.</p>
+    <p th:text="#{subTasks}"></p>
+    <p th:if="${task.subTasks.size() == 0}" th:text="#{noSubTasks}"></p>
     <div th:if="${task.subTasks.size() > 0}">
     <ul th:each="subTask : ${task.subTasks}">
         <li>
             <table>
                 <tr>
-                    <td>Name:</td>
+                    <td th:text="#{taskName}"></td>
                     <td th:text="${subTask.name}"></td>
                 </tr>
                 <tr>
-                    <td>Description:</td>
+                    <td th:text="#{taskDescription}"></td>
                     <td th:text="${subTask.description}"></td>
                 </tr>
             </table>
         </li>
     </ul>
     </div>
-    <a th:href="'/tasks/' + ${task.id.toString()} + '/sub/create'">Add a subtask</a>
-    <p th:if="${task == null}">
-        Geen task gevonden met die ID.
+    <a th:href="'/tasks/' + ${task.id.toString()} + '/sub/create'" th:text="#{addSubTask}"></a>
+    <p th:if="${task == null}" th:text="#{taskError}">
     </p>
 </section>
+<script src="/js/locale.js"></script>
 </body>
 </html>

@@ -1,11 +1,13 @@
 package pe.permanente_evaluatie.service;
 
+import org.springframework.stereotype.Service;
 import pe.permanente_evaluatie.domain.SubTask;
 import pe.permanente_evaluatie.domain.Task;
 import pe.permanente_evaluatie.domain.TaskDTO;
 
 import java.util.List;
 
+@Service
 public interface TaskService {
 
     List<Task> getTasks();

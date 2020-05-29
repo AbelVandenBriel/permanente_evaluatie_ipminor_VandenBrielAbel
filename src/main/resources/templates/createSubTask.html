@@ -2,34 +2,44 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add A Sub Task</title>
+    <title th:text="#{titleAddSubTask}"></title>
     <link rel="stylesheet" type="text/css" href="/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <header>
-    <h1>Task App</h1>
+    <h1 th:text="#{app}"></h1>
 </header>
 <body>
 <div id="mySidenav" class="sidenav">
     <img src="/images/double-chevron.png" id="open">
-    <a href="/">Overview</a></li>
-    <a href="/tasks/new">Create Task</a>
+    <a href="/" th:text="#{overview}">Overview</a></li>
+    <a href="/tasks/new" th:text="#{create}">Create Task</a>
+    <div class="language">
+        <p th:text="#{lang.change}"></p>
+        <select id="locales">
+            <option value=""></option>
+            <option value="en">English</option>
+            <option value="nl">Nederlands</option>
+        </select>
+    </div>
 </div>
 <section>
-    <h2>Add a sub task:</h2>
+    <h2 th:text="#{subTask}"></h2>
     <form method="post" action="/tasks/createTask" th:action="'/tasks/createSubTask/' + ${id}">
         <div>
-            <label for="name">Task name:</label>
+            <label for="name" th:text="#{taskName}"></label>
             <input id="name" name="name" type="text" required>
         </div>
         <div>
-            <label for="description">Description:</label>
+            <label for="description" th:text="#{taskDescription}"></label>
             <input id="description" name="description" type="text" required>
         </div>
         <div>
-            <input type="submit">
+            <input type="submit" th:value="#{submit}">
         </div>
     </form>
 </section>
+<script src="/js/locale.js"></script>
 </body>
 </html>

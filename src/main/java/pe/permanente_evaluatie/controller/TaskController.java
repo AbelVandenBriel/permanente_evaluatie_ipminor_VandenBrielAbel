@@ -12,6 +12,8 @@ import pe.permanente_evaluatie.service.TaskService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -23,7 +25,11 @@ public class TaskController {
 
     @GetMapping
     public String getTasks(Model model){
-        model.addAttribute("tasks", ObjectMapperUtils.mapAll(taskService.getTasks(), TaskDTO.class));
+        List<TaskDTO> tasks = new ArrayList<>();
+        for(Task task : taskService.getTasks()){
+            tasks.add(Utils.taskToDTO(task));
+        }
+        model.addAttribute("tasks", tasks);
         return "tasks";
     }
 
@@ -34,7 +40,7 @@ public class TaskController {
 
     @PostMapping("/createTask")
     public String createTask(@ModelAttribute TaskDTO taskDTO){
-        Task task = ObjectMapperUtils.map(taskDTO, Task.class);
+        Task task = Utils.DTOToTask(taskDTO);
         taskService.addTask(task);
         return "redirect:/tasks";
     }
@@ -53,7 +59,7 @@ public class TaskController {
 
     @PostMapping("/createSubTask/{parentId}")
     public String createSubTask(@PathVariable("parentId") String parentId, @ModelAttribute SubTaskDTO subTaskDTO){
-        SubTask subTask = ObjectMapperUtils.map(subTaskDTO, SubTask.class);
+        SubTask subTask = Utils.DTOToSubTask(subTaskDTO);
         taskService.addSubtask(parentId, subTask);
         return "redirect:/tasks/" + parentId;
     }
@@ -66,7 +72,7 @@ public class TaskController {
 
     @PostMapping("/editTask")
     public String editTask(@ModelAttribute TaskDTO taskDTO){
-        Task task = ObjectMapperUtils.map(taskDTO, Task.class);
+        Task task = Utils.DTOToTask(taskDTO);
         taskService.editTask(task);
         return "redirect:/tasks/" + task.getId();
     }

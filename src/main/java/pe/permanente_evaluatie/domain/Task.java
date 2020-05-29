@@ -22,7 +22,7 @@ public class Task {
     private List<SubTask> subTasks;
 
     public Task(){
-
+        subTasks = new ArrayList<>();
     }
 
     public Task(String name, String description, LocalDateTime dueDate){

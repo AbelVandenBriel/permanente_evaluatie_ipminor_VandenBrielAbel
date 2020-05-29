@@ -19,7 +19,11 @@ public class TaskDTO {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime dueDate;
     @OneToMany(cascade = CascadeType.ALL)
-    private List<SubTask> subTasks;
+    private List<SubTaskDTO> subTasks;
+
+    public TaskDTO(){
+        subTasks = new ArrayList<>();
+    }
 
     public void setId(UUID id) {
         this.id = id;
@@ -59,11 +63,11 @@ public class TaskDTO {
         return formatter.format(dueDate);
     }
 
-    public void addSubTask(SubTask task) {
+    public void addSubTask(SubTaskDTO task) {
         subTasks.add(task);
     }
 
-    public List<SubTask> getSubTasks() {
+    public List<SubTaskDTO> getSubTasks() {
         return subTasks;
     }
 }
